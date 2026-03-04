@@ -1,0 +1,13 @@
+{
+  "name": "launchpad",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -r dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "db:generate": "pnpm --filter @launchpad/api db:generate",
+    "db:migrate": "pnpm --filter @launchpad/api db:migrate",
+    "db:seed": "pnpm --filter @launchpad/api db:seed"
+  }
+}
