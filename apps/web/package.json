@@ -21,6 +21,7 @@
 		"auth:schema": "better-auth generate --config src/lib/server/auth.ts --output src/lib/server/db/auth.schema.ts --yes"
 	},
 	"devDependencies": {
+		"@launchpad/shared": "workspace:*",
 		"@better-auth/cli": "~1.4.21",
 		"@eslint/compat": "^2.0.2",
 		"@eslint/js": "^9.39.2",
