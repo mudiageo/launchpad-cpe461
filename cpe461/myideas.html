@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ideas • Launchpad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <a href="signup.html" class="navbar-link">Sign Up</a>
+      <div class="profile-icon" title="Profile">👤</div>
+    </div>
+  </nav>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Launchpad</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html">All Ideas</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="trending.html">Trending</a></li>
+          <li><a href="myideas.html" class="active">My Ideas</a></li>
+        </ul>
+      </nav>
+      <button class="new-idea-btn" onclick="window.location.href='submit.html'">+ New Idea</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <header class="content-header">
+        <div class="content-title">
+          <h1>My Ideas</h1>
+          <p class="content-subtitle">Ideas you've submitted and are working on.</p>
+        </div>
+      </header>
+
+      <section class="ideas">
+        <article class="idea-card">
+          <header class="idea-card-header">
+            <h3 class="idea-title">AI-Powered Code Review Assistant</h3>
+            <span class="badge">Developer Tools</span>
+          </header>
+          <p class="idea-desc">An intelligent tool that automatically reviews pull requests, identifies potential bugs, suggests improvements, and ensures code quality standards are met across the entire codebase.</p>
+          <div class="idea-meta">
+            <span class="idea-stats"><span class="icon">👍</span> 234</span>
+            <span class="idea-stats"><span class="icon">💬</span> 45</span>
+            <span class="idea-author">by You · 2 hours ago</span>
+          </div>
+        </article>
+
+        <article class="idea-card">
+          <header class="idea-card-header">
+            <h3 class="idea-title">Freelancer Financial Dashboard</h3>
+            <span class="badge">Finance</span>
+          </header>
+          <p class="idea-desc">All-in-one financial management for freelancers with invoice tracking, expense categorization, tax estimation, and automated bookkeeping.</p>
+          <div class="idea-meta">
+            <span class="idea-stats"><span class="icon">👍</span> 98</span>
+            <span class="idea-stats"><span class="icon">💬</span> 15</span>
+            <span class="idea-author">by You · 1 day ago</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <button class="fab" aria-label="Add new idea" onclick="window.location.href='submit.html'">
+    <span class="fab-icon">+</span>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+</html>

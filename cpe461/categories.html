@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories • Launchpad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <a href="signup.html" class="navbar-link">Sign Up</a>
+      <div class="profile-icon" title="Profile">👤</div>
+    </div>
+  </nav>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Launchpad</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html">All Ideas</a></li>
+          <li><a href="categories.html" class="active">Categories</a></li>
+          <li><a href="#">Trending</a></li>
+          <li><a href="myideas.html">My Ideas</a></li>
+        </ul>
+      </nav>
+      <button class="new-idea-btn" onclick="window.location.href='submit.html'">+ New Idea</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <header class="content-header">
+        <div class="content-title">
+          <h1>Browse by Category</h1>
+          <p class="content-subtitle">Explore ideas organized by industry and focus area</p>
+        </div>
+      </header>
+
+      <section class="category-grid">
+        <article class="category-card">
+          <div class="category-icon">🛠️</div>
+          <h3>Developer Tools</h3>
+          <p>Tools and platforms for developers</p>
+          <div class="category-meta">156 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🛒</div>
+          <h3>E-commerce</h3>
+          <p>Online shopping and retail solutions</p>
+          <div class="category-meta">89 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">💪</div>
+          <h3>Health & Wellness</h3>
+          <p>Healthcare and fitness innovations</p>
+          <div class="category-meta">124 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🏠</div>
+          <h3>Smart Home</h3>
+          <p>IoT and home automation</p>
+          <div class="category-meta">67 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🍽️</div>
+          <h3>Food & Beverage</h3>
+          <p>Culinary and dining experiences</p>
+          <div class="category-meta">93 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">💰</div>
+          <h3>Finance</h3>
+          <p>Financial services and fintech</p>
+          <div class="category-meta">112 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🎓</div>
+          <h3>Education</h3>
+          <p>Learning platforms and edtech</p>
+          <div class="category-meta">145 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">⚡</div>
+          <h3>Productivity</h3>
+          <p>Tools to boost efficiency</p>
+          <div class="category-meta">178 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🎮</div>
+          <h3>Entertainment</h3>
+          <p>Media, gaming, and content</p>
+          <div class="category-meta">71 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🌐</div>
+          <h3>Social Network</h3>
+          <p>Community and communication</p>
+          <div class="category-meta">84 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">✈️</div>
+          <h3>Travel & Tourism</h3>
+          <p>Travel experiences and booking</p>
+          <div class="category-meta">56 ideas</div>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">🌱</div>
+          <h3>Sustainability</h3>
+          <p>Environmental and eco solutions</p>
+          <div class="category-meta">102 ideas</div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <button class="fab" aria-label="Add new idea" onclick="window.location.href='submit.html'">
+    <span class="fab-icon">+</span>
+  </button>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit New Idea • Launchpad</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <div class="profile-icon" title="Profile">👤</div>
+    </div>
+  </nav>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Launchpad</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html">All Ideas</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Trending</a></li>
+          <li><a href="myideas.html">My Ideas</a></li>
+        </ul>
+      </nav>
+      <button class="new-idea-btn">+ New Idea</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <a href="index.html" class="back-link">← Back to ideas</a>
+
+      <header class="form-header">
+        <h1>Submit New Idea</h1>
+        <p>Share your startup concept with the community</p>
+      </header>
+
+      <form id="submit-form" novalidate>
+        <div class="field">
+          <label for="idea-title">Idea Title *</label>
+          <input type="text" id="idea-title" name="title" placeholder="e.g., AI-Powered Code Review Assistant" required>
+        </div>
+
+        <div class="field">
+          <label for="category">Category *</label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="developer-tools">Developer Tools</option>
+            <option value="finance">Finance</option>
+            <option value="productivity">Productivity</option>
+            <option value="health">Health</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="short-desc">Short Description *</label>
+          <textarea id="short-desc" name="shortDesc" rows="3" placeholder="Brief 2-3 sentence summary..." required></textarea>
+          <p class="helper-text">This will appear in the idea feed preview. <span id="short-counter">0 characters</span></p>
+        </div>
+
+        <div class="field">
+          <label for="full-desc">Full Description *</label>
+          <textarea id="full-desc" name="fullDesc" rows="6" placeholder="Explain your idea in detail..." required></textarea>
+          <p class="helper-text"><span id="full-counter">0 characters</span></p>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="cancel-btn" class="secondary-btn">Cancel</button>
+          <button type="submit" id="submit-btn" class="primary-btn" disabled>Submit Idea</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
