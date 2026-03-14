@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launchpad - Sign In</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="auth">
+
+<main class="signup-container">
+
+<div class="signup-card" role="form" aria-labelledby="signin-title">
+
+<header class="signup-header">
+
+
+
+<h1 id="signin-title">Welcome back</h1>
+
+<p class="subtitle">Sign in to your Launchpad account.</p>
+
+</header>
+
+
+<form id="signin-form" novalidate>
+
+<div class="field">
+
+<label for="email">Email Address</label>
+
+<input
+type="email"
+id="email"
+name="email"
+placeholder="you@example.com"
+required
+>
+
+<p class="helper-text error" id="email-error"></p>
+
+</div>
+
+
+<div class="field">
+
+<label for="password">Password</label>
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="••••••••"
+required
+>
+
+<p class="helper-text error" id="password-error"></p>
+
+</div>
+
+
+<div class="field checkbox-field">
+
+<input type="checkbox" id="remember">
+
+<label for="remember">Remember me for 30 days</label>
+
+</div>
+
+
+<button
+type="submit"
+id="signin-btn"
+class="primary-btn"
+disabled
+>
+
+Sign In
+
+</button>
+
+</form>
+
+
+<footer class="signup-footer">
+
+<p>
+Don’t have an account?
+<a href="login.html" class="link link-primary">Sign up for free</a>
+</p>
+
+</footer>
+
+</div>
+
+</main>
+
+
+<script src="signin.js"></script>
+
+</body>
+</html>

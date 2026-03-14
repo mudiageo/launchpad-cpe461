@@ -41,29 +41,61 @@ function initSignup() {
     event.preventDefault();
     if (submitBtn.disabled) return;
 
-    alert('Account created successfully!');
-    form.reset();
-    updateSubmitState();
-    fullNameInput.focus();
+    // Simulate account creation
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
   });
 
   updateSubmitState();
 }
 
 // --- Dashboard modal + list actions ----------------------------------------
+// --- Edit Button Handlers -----------------------------------------------
+function initEditButtons() {
+  const editBtns = document.querySelectorAll('.edit-btn');
+  editBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // Navigate to edit idea page
+      window.location.href = 'edit_idea.html';
+    });
+  });
+}
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const deleteModal = document.getElementById('deleteModal');
+      if (deleteModal) {
+        // Custom modal for pages with deleteModal
+        const ideaTitle = btn.closest('.idea-card').querySelector('.idea-title').textContent;
+        document.getElementById('delete-idea-title').textContent = ideaTitle;
+        const modal = new bootstrap.Modal(deleteModal);
+        modal.show();
+        // Handle confirm delete
+        const confirmBtn = document.getElementById('confirm-delete');
+        let cardToDelete = btn.closest('.idea-card');
+        const handleConfirm = () => {
+          cardToDelete?.remove();
+          modal.hide();
+          confirmBtn.removeEventListener('click', handleConfirm);
+        };
+        confirmBtn.addEventListener('click', handleConfirm);
+      } else {
+        // Fallback to confirm for other pages
+        if (confirm('Are you sure you want to delete this idea? This action cannot be undone.')) {
+          btn.closest('.idea-card')?.remove();
+        }
+      }
+    });
+  });
+}
+
 function initDashboard() {
   const modal = document.getElementById('modal');
   if (!modal) return;
 
-  const editBtns = document.querySelectorAll('.edit-btn');
   const cancelBtn = document.getElementById('cancel-btn');
   const saveBtn = document.getElementById('save-btn');
-
-  editBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      modal.classList.remove('hidden');
-    });
-  });
 
   cancelBtn?.addEventListener('click', () => {
     modal.classList.add('hidden');
@@ -74,13 +106,35 @@ function initDashboard() {
     modal.classList.add('hidden');
   });
 
-  const deleteBtns = document.querySelectorAll('.delete-btn');
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to delete this idea? This action cannot be undone.')) {
-        btn.closest('.idea-card')?.remove();
-      }
-    });
+  // Delete buttons are now handled separately
+}
+
+// --- Edit Idea Page Delete Button ---------------------------------------------
+function initEditIdeaDelete() {
+  const deleteBtn = document.getElementById('delete-idea-btn');
+  if (!deleteBtn) return;
+
+  deleteBtn.addEventListener('click', () => {
+    const deleteModal = document.getElementById('deleteModal');
+    if (deleteModal) {
+      // Get the idea title from the form
+      const ideaTitle = document.getElementById('idea-title').value;
+      document.getElementById('delete-idea-title').textContent = ideaTitle;
+      const modal = new bootstrap.Modal(deleteModal);
+      modal.show();
+
+      // Handle confirm delete
+      const confirmBtn = document.getElementById('confirm-delete');
+      const handleConfirm = () => {
+        // Simulate deletion request
+        setTimeout(() => {
+          // On success, redirect to my ideas page
+          window.location.href = 'myideas.html';
+        }, 1000);
+        confirmBtn.removeEventListener('click', handleConfirm);
+      };
+      confirmBtn.addEventListener('click', handleConfirm);
+    }
   });
 }
 
@@ -178,10 +232,10 @@ function initSubmitForm() {
     event.preventDefault();
     if (submitBtn.disabled) return;
 
-    alert('Idea submitted successfully!');
-    form.reset();
-    updateCounters();
-    validateForm();
+    // Simulate idea submission
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
   });
 
   cancelBtn.addEventListener('click', () => {
@@ -194,8 +248,159 @@ function initSubmitForm() {
   validateForm();
 }
 
+// --- Idea edit form --------------------------------------------------
+function initEditForm() {
+  const form = document.getElementById('edit-form');
+  if (!form) return;
+
+  const titleInput = document.getElementById('idea-title');
+  const categorySelect = document.getElementById('category');
+  const shortDesc = document.getElementById('short-description');
+  const fullDesc = document.getElementById('full-description');
+  const shortCounter = document.getElementById('short-char-count');
+  const fullCounter = document.getElementById('full-char-count');
+  const submitBtn = document.querySelector('.btn-submit');
+
+  // Store original values for clearing on focus
+  const originalValues = {
+    title: titleInput.value,
+    shortDesc: shortDesc.value,
+    fullDesc: fullDesc.value
+  };
+
+  // Track if user has interacted with fields
+  let hasInteracted = false;
+
+  // Disable submit button by default
+  submitBtn.disabled = true;
+
+  function updateCounters() {
+    shortCounter.textContent = shortDesc.value.length;
+    fullCounter.textContent = fullDesc.value.length;
+  }
+
+  function validateForm() {
+    const titleValid = titleInput.value.trim().length > 0;
+    const categoryValid = categorySelect.value !== '';
+    const shortValid = shortDesc.value.trim().length > 0;
+    const fullValid = fullDesc.value.trim().length > 0;
+
+    submitBtn.disabled = !(hasInteracted && titleValid && categoryValid && shortValid && fullValid);
+  }
+
+  // Clear pre-filled text on focus
+  titleInput.addEventListener('focus', () => {
+    if (titleInput.value === originalValues.title) {
+      titleInput.value = '';
+    }
+  });
+
+  titleInput.addEventListener('blur', () => {
+    if (titleInput.value === '') {
+      titleInput.value = originalValues.title;
+    }
+  });
+
+  shortDesc.addEventListener('focus', () => {
+    if (shortDesc.value === originalValues.shortDesc) {
+      shortDesc.value = '';
+      updateCounters();
+      validateForm();
+    }
+  });
+
+  shortDesc.addEventListener('blur', () => {
+    if (shortDesc.value === '') {
+      shortDesc.value = originalValues.shortDesc;
+      updateCounters();
+      validateForm();
+    }
+  });
+
+  fullDesc.addEventListener('focus', () => {
+    if (fullDesc.value === originalValues.fullDesc) {
+      fullDesc.value = '';
+      updateCounters();
+      validateForm();
+    }
+  });
+
+  fullDesc.addEventListener('blur', () => {
+    if (fullDesc.value === '') {
+      fullDesc.value = originalValues.fullDesc;
+      updateCounters();
+      validateForm();
+    }
+  });
+
+  [titleInput, categorySelect, shortDesc, fullDesc].forEach((el) => {
+    el.addEventListener('input', () => {
+      hasInteracted = true;
+      updateCounters();
+      validateForm();
+    });
+  });
+
+  categorySelect.addEventListener('change', () => {
+    hasInteracted = true;
+    validateForm();
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (submitBtn.disabled) return;
+
+    alert('Idea updated successfully!');
+    // In real app, save to database
+    window.location.href = 'myideas_home.html';
+  });
+
+  updateCounters();
+  validateForm();
+}
+
+// --- Account settings form --------------------------------------------------
+function initAccountSettings() {
+  const form = document.getElementById('account-settings-form');
+  if (!form) return;
+
+  const fullNameInput = document.getElementById('full-name');
+  const emailInput = document.getElementById('email');
+  const bioTextarea = document.getElementById('bio');
+  const submitBtn = document.querySelector('.primary-btn');
+
+  function validateForm() {
+    const nameValid = fullNameInput.value.trim().length > 0;
+    const emailValid = emailInput.checkValidity();
+    const bioValid = bioTextarea.value.trim().length > 0;
+
+    submitBtn.disabled = !(nameValid && emailValid && bioValid);
+  }
+
+  [fullNameInput, emailInput, bioTextarea].forEach((input) => {
+    input.addEventListener('input', validateForm);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (submitBtn.disabled) return;
+
+    // Simulate saving settings
+    alert('Account settings saved successfully!');
+    // In real app, save to database
+    window.location.href = "dashboard.html";
+  });
+
+  validateForm();
+}
+
 // Initialize based on current page
 initSignup();
 initDashboard();
+initDeleteButtons();
+initEditButtons();
 initIdeaDetail();
 initSubmitForm();
+initEditForm();
+initEditIdeaDelete();
+initAccountSettings();
