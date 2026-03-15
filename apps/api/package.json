@@ -25,6 +25,8 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "valibot": "^1.2.0"
+    
+    
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

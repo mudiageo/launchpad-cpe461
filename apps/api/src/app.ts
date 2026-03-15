@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './swagger/config';
 import { errorHandler } from './middleware/error.middleware';
+import { categoriesRouter } from './routes/categories';
 
 export function createApp() {
   const app = express();
@@ -17,7 +18,7 @@ export function createApp() {
   app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
   app.use(express.json({ limit: '10kb' }));
 
-  // Routes will be added here by the backend team
+  app.use('/api/v1/categories', categoriesRouter);
   // app.use('/api/v1/ideas', ideasRouter);
 
   app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

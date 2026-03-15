@@ -1,0 +1,23 @@
+import 'dotenv/config';
+import { db } from './client';
+import { categories } from '@launchpad/shared';
+
+const seedCategories = [
+  { name: 'FinTech',    slug: 'fintech',    icon: '💳' },
+  { name: 'HealthTech', slug: 'healthtech', icon: '🏥' },
+  { name: 'EdTech',     slug: 'edtech',     icon: '📚' },
+  { name: 'AgriTech',   slug: 'agritech',   icon: '🌾' },
+  { name: 'CleanTech',  slug: 'cleantech',  icon: '♻️' },
+  { name: 'SaaS',       slug: 'saas',       icon: '☁️' },
+  { name: 'Social',     slug: 'social',     icon: '🤝' },
+  { name: 'Other',      slug: 'other',      icon: '💡' },
+];
+
+async function seed() {
+  console.log('🌱 Seeding categories…');
+  await db.insert(categories).values(seedCategories).onConflictDoNothing();
+  console.log('✅ Done');
+  process.exit(0);
+}
+
+seed().catch((e) => { console.error(e); process.exit(1); });
