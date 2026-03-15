@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launchpad – Trending Ideas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="dashboard.html"><img src="logo launchpad.png" alt="Launchpad Logo" class="logo"></a>
+    <div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><div class="dropdown-item profile-card">
+            <div class="profile-avatar">
+              <span class="avatar-icon">👤</span>
+            </div>
+            <div class="profile-info">
+              <h5>John Doe</h5>
+              <p class="profile-email">john.doe@example.com</p>
+              <p class="profile-joined">Joined: January 2024</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><div class="profile-stats">
+            <div class="stat-card">
+              <h6>Total Ideas</h6>
+              <p>3</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Upvotes</h6>
+              <p>344</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Comments</h6>
+              <p>63</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="account_settings.html">Account Settings</a></li>
+          <li><a class="dropdown-item" href="signin.html">Switch Account</a></li>
+          <li><a class="dropdown-item" href="signin.html">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar col-md-3 col-lg-2">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">All Ideas</a></li>
+              <li><a href="categories.html">Categories</a></li>
+              <li><a href="trending.html" class="active">Trending</a></li>
+              <li><a href="myideas.html">My Ideas</a></li>
+            </ul>
+          </nav>
+          <button class="new-idea-btn" onclick="window.location.href='submit.html'">+ New Idea</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content col-md-9 col-lg-10">
+      <header class="content-header">
+        <div class="content-title">
+          <h1>Trending Ideas</h1>
+          <p class="content-subtitle">Discover the most popular startup concepts right now.</p>
+        </div>
+
+        <div class="filters">
+          <select id="time-filter">
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+          </select>
+          <select id="category-filter">
+            <option value="all">All Categories</option>
+            <option value="developer-tools">Developer Tools</option>
+            <option value="e-commerce">E-commerce</option>
+            <option value="social-network">Social Network</option>
+            <option value="health-wellness">Health & Wellness</option>
+            <option value="sustainability">Sustainability</option>
+            <option value="smart-home">Smart Home</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="trending-list">
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">1</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>AI-Powered Code Review Assistant <span class="category-tag">(Developer Tools)</span></h3>
+          <p>An intelligent tool that automatically reviews pull requests, identifies potential bugs, suggests improvements, and ensures code quality standards are met across the entire codebase.</p>
+          <div class="trending-meta">💬 44 comments · by Sarah Chen · 2 hours ago</div>
+        </div>
+      </article>
+
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">2</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>Sustainable Fashion Marketplace <span class="category-tag">(E-commerce)</span></h3>
+          <p>A platform connecting eco-conscious consumers with verified sustainable fashion brands. Features carbon footprint tracking, material transparency, and ethical manufacturing verification.</p>
+          <div class="trending-meta">💬 33 comments · by Marcus Johnson · 5 hours ago</div>
+        </div>
+      </article>
+
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">3</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>Decentralized Content Creator Platform <span class="category-tag">(Social Network)</span></h3>
+          <p>Web3 platform empowering creators with NFT-based content ownership, direct fan monetization, and transparent revenue sharing without platform fees.</p>
+          <div class="trending-meta">💬 59 comments · by Alex Reyes · 4 hours ago</div>
+        </div>
+      </article>
+
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">4</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>Remote Team Wellness Platform <span class="category-tag">(Health & Wellness)</span></h3>
+          <p>Comprehensive wellness solution for remote teams including virtual fitness classes, mental health resources, team challenges, and personalized health tracking.</p>
+          <div class="trending-meta">💬 28 comments · by Emily Rodriguez · 6 hours ago</div>
+        </div>
+      </article>
+
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">5</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>Carbon Offset Tracking App <span class="category-tag">(Sustainability)</span></h3>
+          <p>Personal carbon footprint tracker that connects daily activities to environmental impact and suggests actionable ways to reduce emissions with detailed offset purchasing.</p>
+          <div class="trending-meta">💬 31 comments · by Jason Lee · 6 hours ago</div>
+        </div>
+      </article>
+
+      <article class="trending-item">
+        <div class="numeration">
+          <div class="rank-circle">6</div>
+          <span class="trend-arrow">↑</span>
+        </div>
+        <div class="idea-card">
+          <h3>Smart Home Energy Optimizer <span class="category-tag">(Smart Home)</span></h3>
+          <p>IoT solution that learns your energy usage patterns and automatically adjusts smart home devices to minimize electricity costs while maintaining comfort.</p>
+          <div class="trending-meta">💬 19 comments · by David Kim · 12 hours ago</div>
+        </div>
+      </article>
+      </section>
+    </main>
+  </div>
+  </div>
+  </div>
+
+  <button class="fab" aria-label="Add new idea" onclick="window.location.href='submit.html'">
+    <span class="fab-icon">+</span>
+  </button>
+
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

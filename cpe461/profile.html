@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile • Launchpad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="dashboard.html">
+  <img src="logo launchpad.png" alt="Launchpad Logo" class="logo">
+</a><div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><div class="dropdown-item profile-card">
+            <div class="profile-avatar">
+              <span class="avatar-icon">👤</span>
+            </div>
+            <div class="profile-info">
+              <h5>John Doe</h5>
+              <p class="profile-email">john.doe@example.com</p>
+              <p class="profile-joined">Joined: January 2024</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><div class="profile-stats">
+            <div class="stat-card">
+              <h6>Total Ideas</h6>
+              <p>3</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Upvotes</h6>
+              <p>344</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Comments</h6>
+              <p>63</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="account_settings.html">Account Settings</a></li>
+          <li><a class="dropdown-item" href="signin.html">Switch Account</a></li>
+          <li><a class="dropdown-item" href="signin.html">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar col-md-3 col-lg-2">
+          <nav>
+            <ul>
+              <li><a href="dashboard.html">All Ideas</a></li>
+              <li><a href="categories.html">Categories</a></li>
+              <li><a href="trending.html">Trending</a></li>
+              <li><a href="myideas_home.html">My Ideas</a></li>
+            </ul>
+          </nav>
+          <button class="new-idea-btn" onclick="window.location.href='submit.html'">+ New Idea</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content col-md-9 col-lg-10">
+          <header class="content-header">
+            <div class="content-title">
+              <h1>My Profile</h1>
+              <p class="content-subtitle">Manage your account settings and preferences</p>
+            </div>
+          </header>
+
+          <section class="profile-section">
+            <div class="profile-card">
+              <div class="profile-avatar">
+                <span class="avatar-icon">👤</span>
+              </div>
+              <div class="profile-info">
+                <h2>John Doe</h2>
+                <p class="profile-email">john.doe@example.com</p>
+                <p class="profile-joined">Joined: January 2024</p>
+              </div>
+            </div>
+
+            <div class="profile-stats">
+              <div class="stat-card">
+                <h3>Total Ideas</h3>
+                <p>3</p>
+              </div>
+              <div class="stat-card">
+                <h3>Total Upvotes</h3>
+                <p>344</p>
+              </div>
+              <div class="stat-card">
+                <h3>Total Comments</h3>
+                <p>63</p>
+              </div>
+            </div>
+
+            <div class="profile-settings">
+              <h3>Account Settings</h3>
+              <form class="settings-form">
+                <div class="field">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" value="John Doe">
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="john.doe@example.com">
+                </div>
+                <div class="field">
+                  <label for="bio">Bio</label>
+                  <textarea id="bio" rows="3">Entrepreneur and idea enthusiast passionate about innovative solutions.</textarea>
+                </div>
+                <button type="submit" class="primary-btn">Save Changes</button>
+              </form>
+              <p class="account-links">
+                <a href="signup.html" class="link">Create another account</a> | 
+                <a href="signin.html" class="link">Switch account</a>
+              </p>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" aria-label="Add new idea" onclick="window.location.href='submit.html'">
+    <span class="fab-icon">+</span>
+  </button>
+
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

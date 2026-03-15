@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idea • AI-Powered Code Review Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+  <a href="dashboard.html">
+  <img src="logo launchpad.png" alt="Launchpad Logo" class="logo">
+</a>
+    <div class="navbar-spacer"></div>
+    <input type="text" placeholder="Search ideas..." class="search-bar">
+    <div class="navbar-actions">
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><div class="dropdown-item profile-card">
+            <div class="profile-avatar">
+              <span class="avatar-icon">👤</span>
+            </div>
+            <div class="profile-info">
+              <h5>John Doe</h5>
+              <p class="profile-email">john.doe@example.com</p>
+              <p class="profile-joined">Joined: January 2024</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><div class="profile-stats">
+            <div class="stat-card">
+              <h6>Total Ideas</h6>
+              <p>3</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Upvotes</h6>
+              <p>344</p>
+            </div>
+            <div class="stat-card">
+              <h6>Total Comments</h6>
+              <p>63</p>
+            </div>
+          </div></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="account_settings.html">Account Settings</a></li>
+          <li><a class="dropdown-item" href="signin.html">Switch Account</a></li>
+          <li><a class="dropdown-item" href="signin.html">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <aside class="col-md-3 col-lg-2 sidebar">
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">All Ideas</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="trending.html">Trending</a></li>
+          <li><a href="myideas.html">My Ideas</a></li>
+        </ul>
+      </nav>
+      <button class="new-idea-btn" onclick="window.location.href='submit.html'">+ New Idea</button>
+    </aside>
+
+      <main class="col-md-9 col-lg-10 content">
+        <a href="dashboard.html" class="back-link">← Back to ideas</a>
+    <article class="detail-card">
+
+      <header class="detail-header">
+        <div class="detail-title-group">
+          <h1 class="detail-title">AI-Powered Code Review Assistant</h1>
+          <p class="detail-meta">by <span class="author">Sarah Chen</span></p>
+        </div>
+        <div class="detail-stats">
+          <span class="badge">Developer Tools</span>
+          <button class="upvote-btn" type="button" aria-label="Upvote">
+            <span class="upvote-icon">👍</span>
+            <span class="upvote-count" id="upvote-count">234</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="detail-content">
+        <p class="summary">A smart assistant that scans your pull requests and provides actionable code quality feedback across repositories.</p>
+        <p class="full-description">It integrates with GitHub, GitLab, and Bitbucket to provide inline suggestions, prioritize issues by severity, and learn from your team's coding patterns to reduce noise over time.</p>
+
+        <h2>Key features</h2>
+        <ul class="feature-list">
+          <li>Automated bug detection with severity ratings</li>
+          <li>Code style and consistency checks</li>
+          <li>Security vulnerability scanning</li>
+          <li>Performance optimization suggestions</li>
+          <li>Learning from team-specific coding patterns</li>
+          <li>Detailed explanations for each recommendation</li>
+        </ul>
+      </section>
+
+      <section class="comments" aria-labelledby="comments-title">
+        <h2 id="comments-title">Comments</h2>
+
+        <div class="comment" data-author="Michael Torres">
+          <div class="comment-header">
+            <span class="comment-author">Michael Torres</span>
+            <span class="comment-time">1 hour ago</span>
+          </div>
+          <p class="comment-body">Love the concept — will this support VS Code extensions for inline suggestions?</p>
+        </div>
+
+        <div class="comment" data-author="Jessica Wu">
+          <div class="comment-header">
+            <span class="comment-author">Jessica Wu</span>
+            <span class="comment-time">3 hours ago</span>
+          </div>
+          <p class="comment-body">How do you plan to reduce false positives? Too many can make developers ignore the tool.</p>
+        </div>
+
+        <div class="comment" data-author="Ryan O’Connor">
+          <div class="comment-header">
+            <span class="comment-author">Ryan O’Connor</span>
+            <span class="comment-time">Yesterday</span>
+          </div>
+          <p class="comment-body">Looks like it overlaps with SonarQube/CodeClimate in some areas. What sets it apart?</p>
+        </div>
+
+        <form id="comment-form" class="comment-form">
+          <label for="comment-input" class="sr-only">Add a comment</label>
+          <textarea id="comment-input" rows="3" placeholder="Add a comment..." required></textarea>
+          <button type="submit" class="comment-submit">Post comment</button>
+        </form>
+      </section>
+    </article>
+  </main>
+  </div>
+  </div>
+
+  <button class="fab" aria-label="Add new idea" onclick="window.location.href='submit.html'">
+    <span class="fab-icon">+</span>
+  </button>
+
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
