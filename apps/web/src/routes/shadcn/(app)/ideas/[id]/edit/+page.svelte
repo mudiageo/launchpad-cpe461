@@ -6,6 +6,7 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import { categories, getIdeaById } from '$lib/mock/launchpad';
 	import ArrowLeftIcon from '@lucide/svelte/icons/arrow-left';
 
@@ -17,6 +18,7 @@
 	let fullDesc = $state(idea?.fullDescription ?? '');
 	let deleted = $state(false);
 	let updated = $state(false);
+	let deleteDialogOpen = $state(false);
 
 	const original = {
 		title,
@@ -46,9 +48,8 @@
 	}
 
 	function handleDelete() {
-		if (confirm(`Delete "${title}"? This cannot be undone.`)) {
-			deleted = true;
-		}
+		deleted = true;
+		deleteDialogOpen = false;
 	}
 </script>
 
@@ -121,7 +122,30 @@
 							{/if}
 						</div>
 						<div class="flex gap-3">
-							<Button type="button" variant="outline" onclick={handleDelete}>Delete</Button>
+						<AlertDialog.Root bind:open={deleteDialogOpen}>
+							<AlertDialog.Trigger>
+								{#snippet child({ props })}
+									<Button type="button" variant="outline" {...props}>Delete</Button>
+								{/snippet}
+							</AlertDialog.Trigger>
+							<AlertDialog.Portal>
+								<AlertDialog.Overlay />
+								<AlertDialog.Content>
+									<AlertDialog.Header>
+										<AlertDialog.Title>Delete idea?</AlertDialog.Title>
+										<AlertDialog.Description>
+											This will permanently remove "{title}". This action cannot be undone.
+										</AlertDialog.Description>
+									</AlertDialog.Header>
+									<AlertDialog.Footer>
+										<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+										<AlertDialog.Action onclick={handleDelete} class="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+											Delete
+										</AlertDialog.Action>
+									</AlertDialog.Footer>
+								</AlertDialog.Content>
+							</AlertDialog.Portal>
+						</AlertDialog.Root>
 							<Button variant="outline" href="/shadcn/profile">Cancel</Button>
 							<Button
 								type="submit"

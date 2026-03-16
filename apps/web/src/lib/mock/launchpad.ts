@@ -4,6 +4,7 @@ export type IdeaRecord = {
 	category: string;
 	description: string;
 	fullDescription: string;
+	features?: string[];
 	votes: number;
 	comments: number;
 	author: string;
@@ -39,6 +40,14 @@ export const ideas: IdeaRecord[] = [
 			'An intelligent tool that automatically reviews pull requests, identifies potential bugs, suggests improvements, and ensures code quality standards are met across the entire codebase.',
 		fullDescription:
 			"It integrates with GitHub, GitLab, and Bitbucket to provide inline suggestions, prioritize issues by severity, and learn from your team's coding patterns to reduce noise over time.",
+		features: [
+			'Automated bug detection with severity ratings',
+			'Code style and consistency checks',
+			'Security vulnerability scanning',
+			'Performance optimization suggestions',
+			'Learning from team-specific coding patterns',
+			'Detailed explanations for each recommendation'
+		],
 		votes: 234,
 		comments: 45,
 		author: 'Sarah Chen',
@@ -53,6 +62,13 @@ export const ideas: IdeaRecord[] = [
 			'A platform connecting eco-conscious consumers with verified sustainable fashion brands. Features carbon footprint tracking, material transparency, and ethical manufacturing verification.',
 		fullDescription:
 			'A trusted marketplace for sustainable fashion with lifecycle transparency, verified suppliers, and consumer-friendly carbon impact tracking.',
+		features: [
+			'Carbon footprint score per product',
+			'Verified sustainable brand certification',
+			'Material and supply-chain transparency',
+			'Consumer impact dashboard',
+			'Ethical manufacturing audits'
+		],
 		votes: 189,
 		comments: 32,
 		author: 'Marcus Johnson',
@@ -67,6 +83,13 @@ export const ideas: IdeaRecord[] = [
 			'Comprehensive wellness solution for remote teams including virtual fitness classes, mental health resources, team challenges, and personalized health tracking.',
 		fullDescription:
 			'A workplace wellness platform focused on distributed teams, blending preventive care, engagement programs, and personalized recommendations.',
+		features: [
+			'Virtual fitness and mindfulness sessions',
+			'Mental health check-ins and resources',
+			'Team wellness challenges with leaderboards',
+			'Personalized health tracking dashboard',
+			'Manager insights and anonymous reporting'
+		],
 		votes: 156,
 		comments: 28,
 		author: 'Emily Rodriguez',
@@ -81,6 +104,13 @@ export const ideas: IdeaRecord[] = [
 			'IoT solution that learns your energy usage patterns and automatically adjusts smart home devices to minimize electricity costs while maintaining comfort.',
 		fullDescription:
 			'An adaptive smart-home orchestration system that optimizes consumption, automates schedules, and visualizes cost savings in real time.',
+		features: [
+			'Learns usage patterns over time',
+			'Automatic device scheduling and adjustment',
+			'Real-time energy cost dashboard',
+			'Integration with major smart-home platforms',
+			'Peak-hour avoidance recommendations'
+		],
 		votes: 142,
 		comments: 19,
 		author: 'David Kim',
@@ -95,6 +125,13 @@ export const ideas: IdeaRecord[] = [
 			'Connect home cooks with neighbors to share homemade meals, reduce food waste, and build community. Features dietary filters, rating system, and secure payments.',
 		fullDescription:
 			'A neighborhood food-sharing network that enables micro-commerce around local meals while improving trust, safety, and discovery.',
+		features: [
+			'Dietary and allergen filters',
+			'Verified cook profiles and ratings',
+			'Secure in-app payments',
+			'Scheduled or on-demand orders',
+			'Food waste impact tracking'
+		],
 		votes: 127,
 		comments: 41,
 		author: 'Priya Patel',
@@ -109,6 +146,13 @@ export const ideas: IdeaRecord[] = [
 			'All-in-one financial management for freelancers with invoice tracking, expense categorization, tax estimation, and automated bookkeeping.',
 		fullDescription:
 			'A freelancer control center for cash flow visibility, tax planning, invoicing, and lightweight financial operations.',
+		features: [
+			'Invoice creation and tracking',
+			'Automated expense categorization',
+			'Real-time tax estimation',
+			'Multi-currency support',
+			'Quarterly financial summary reports'
+		],
 		votes: 98,
 		comments: 15,
 		author: 'Alex Turner',
@@ -123,6 +167,13 @@ export const ideas: IdeaRecord[] = [
 			'Connect students with verified peer tutors across subjects. Features scheduling, video sessions, session recordings, and a reputation-based matching system.',
 		fullDescription:
 			'An academic support platform that matches students with trusted peers and provides scheduling, delivery, and quality assurance tools.',
+		features: [
+			'Subject-based peer matching algorithm',
+			'Integrated video session rooms',
+			'Session recording and playback',
+			'Reputation and review system',
+			'Flexible scheduling with calendar sync'
+		],
 		votes: 76,
 		comments: 12,
 		author: 'Amara Diallo',

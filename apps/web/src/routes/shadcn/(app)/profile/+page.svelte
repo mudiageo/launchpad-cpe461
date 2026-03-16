@@ -6,6 +6,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import { profile, getUserIdeas } from '$lib/mock/launchpad';
 	import ThumbsUpIcon from '@lucide/svelte/icons/thumbs-up';
 	import MessageSquareIcon from '@lucide/svelte/icons/message-square';
@@ -19,11 +20,11 @@
 	let email = $state(profile.email);
 	let bio = $state(profile.bio);
 	let saved = $state(false);
+	let pendingDeleteId = $state<string | null>(null);
 
 	function deleteIdea(id: string) {
-		if (confirm('Delete this idea? This cannot be undone.')) {
-			ideas = ideas.filter((i) => i.id !== id);
-		}
+		ideas = ideas.filter((i) => i.id !== id);
+		pendingDeleteId = null;
 	}
 
 	function saveProfile(event: SubmitEvent) {
@@ -164,15 +165,34 @@
 							<Button variant="ghost" size="icon-sm" title="Edit" href="/shadcn/ideas/{idea.id}/edit">
 								<PencilIcon class="size-3.5" />
 							</Button>
-							<Button
-								variant="ghost"
-								size="icon-sm"
-								title="Delete"
-								onclick={() => deleteIdea(idea.id)}
-								class="text-destructive hover:text-destructive"
-							>
-								<Trash2Icon class="size-3.5" />
-							</Button>
+							<AlertDialog.Root open={pendingDeleteId === idea.id} onOpenChange={(o) => { if (!o) pendingDeleteId = null; }}>
+							<AlertDialog.Trigger>
+								{#snippet child({ props })}
+									<Button variant="ghost" size="icon-sm" title="Delete"
+										onclick={() => (pendingDeleteId = idea.id)}
+										class="text-destructive hover:text-destructive" {...props}>
+										<Trash2Icon class="size-3.5" />
+									</Button>
+								{/snippet}
+							</AlertDialog.Trigger>
+							<AlertDialog.Portal>
+								<AlertDialog.Overlay />
+								<AlertDialog.Content>
+									<AlertDialog.Header>
+										<AlertDialog.Title>Delete idea?</AlertDialog.Title>
+										<AlertDialog.Description>
+											This will permanently remove "{idea.title}". This action cannot be undone.
+										</AlertDialog.Description>
+									</AlertDialog.Header>
+									<AlertDialog.Footer>
+										<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+										<AlertDialog.Action onclick={() => deleteIdea(idea.id)} class="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+											Delete
+										</AlertDialog.Action>
+									</AlertDialog.Footer>
+								</AlertDialog.Content>
+							</AlertDialog.Portal>
+						</AlertDialog.Root>
 						</div>
 					</div>
 				</Card.Header>

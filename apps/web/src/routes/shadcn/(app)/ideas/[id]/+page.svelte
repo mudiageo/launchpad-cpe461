@@ -22,14 +22,7 @@
 		votes: selectedIdea?.votes ?? 0,
 		summary: selectedIdea?.description ?? 'No summary available.',
 		description: selectedIdea?.fullDescription ?? 'No detailed description available.',
-		features: [
-			'Automated bug detection with severity ratings',
-			'Code style and consistency checks',
-			'Security vulnerability scanning',
-			'Performance optimization suggestions',
-			'Learning from team-specific coding patterns',
-			'Detailed explanations for each recommendation'
-		]
+		features: selectedIdea?.features ?? []
 	};
 
 	type Comment = { author: string; time: string; body: string };
