@@ -1,31 +1,22 @@
 <script lang="ts">
+	import type { ActionData } from './$types';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { goto } from '$app/navigation';
+
+	let { form }: { form: ActionData } = $props();
 
 	let name = $state('');
 	let email = $state('');
 	let password = $state('');
 	let agree = $state(false);
-	let loading = $state(false);
 
 	const isValid = $derived(
 		name.trim().length > 0 && email.includes('@') && password.length >= 8 && agree
 	);
 
 	const passwordTooShort = $derived(password.length > 0 && password.length < 8);
-
-	async function handleSubmit(e: SubmitEvent) {
-		e.preventDefault();
-		if (!isValid) return;
-		loading = true;
-		// Simulate async signup — replace with better-auth call
-		await new Promise((r) => setTimeout(r, 800));
-		loading = false;
-		goto('/shadcn/ideas');
-	}
 </script>
 
 <Card.Root>
@@ -35,7 +26,13 @@
 	</Card.Header>
 
 	<Card.Content>
-		<form onsubmit={handleSubmit} class="space-y-4">
+		<form method="POST" action="?/signUpEmail" class="space-y-4">
+			{#if form?.message}
+				<div class="bg-destructive/10 text-destructive rounded-md px-3 py-2 text-sm">
+					{form.message}
+				</div>
+			{/if}
+
 			<div class="space-y-2">
 				<Label for="name">Full Name</Label>
 				<Input
@@ -94,9 +91,9 @@
 			<Button
 				type="submit"
 				class="w-full bg-violet-600 hover:bg-violet-700"
-				disabled={!isValid || loading}
+				disabled={!isValid}
 			>
-				{loading ? 'Creating account…' : 'Create account'}
+				Create account
 			</Button>
 		</form>
 	</Card.Content>
