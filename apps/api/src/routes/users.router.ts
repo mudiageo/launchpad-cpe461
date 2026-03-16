@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { requireAuth } from '../middlewares/auth.middleware';
+import { requireAuth } from '../middleware/auth.middleware';
 import { db } from '../db/client';
 import { ideas, users } from '@launchpad/shared';
 import { eq, desc } from 'drizzle-orm';

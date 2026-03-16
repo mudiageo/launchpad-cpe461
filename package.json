@@ -9,5 +9,8 @@
     "db:generate": "pnpm --filter @launchpad/api db:generate",
     "db:migrate": "pnpm --filter @launchpad/api db:migrate",
     "db:seed": "pnpm --filter @launchpad/api db:seed"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0"
   }
 }
