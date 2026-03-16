@@ -5,6 +5,7 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import { categories } from '$lib/mock/launchpad';
 	import ArrowLeftIcon from '@lucide/svelte/icons/arrow-left';
 
 	let title = $state('');
@@ -83,18 +84,13 @@
 						</Label>
 						<Select.Root bind:value={category}>
 							<Select.Trigger class="w-full" id="category-select">
-								<Select.Value placeholder="Select a category" />
+								{category || 'Select a category'}
 							</Select.Trigger>
 							<Select.Portal>
 								<Select.Content>
-									<Select.Item value="FinTech" label="FinTech" />
-									<Select.Item value="EdTech" label="EdTech" />
-									<Select.Item value="AgriTech" label="AgriTech" />
-									<Select.Item value="HealthTech" label="HealthTech" />
-									<Select.Item value="Developer Tools" label="Developer Tools" />
-									<Select.Item value="E-commerce" label="E-commerce" />
-									<Select.Item value="Productivity" label="Productivity" />
-									<Select.Item value="Smart Home" label="Smart Home" />
+									{#each categories.filter((item) => item !== 'All') as option}
+										<Select.Item value={option} label={option} />
+									{/each}
 									<Select.Item value="Other" label="Other" />
 								</Select.Content>
 							</Select.Portal>

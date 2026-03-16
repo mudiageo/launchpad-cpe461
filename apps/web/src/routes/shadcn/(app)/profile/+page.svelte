@@ -1,8 +1,12 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import { Textarea } from '$lib/components/ui/textarea/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import { profile, getUserIdeas } from '$lib/mock/launchpad';
 	import ThumbsUpIcon from '@lucide/svelte/icons/thumbs-up';
 	import MessageSquareIcon from '@lucide/svelte/icons/message-square';
 	import LightbulbIcon from '@lucide/svelte/icons/lightbulb';
@@ -10,33 +14,21 @@
 	import PencilIcon from '@lucide/svelte/icons/pencil';
 	import PlusIcon from '@lucide/svelte/icons/plus';
 
-	let ideas = $state([
-		{
-			id: '1',
-			title: 'AI-Powered Code Review Assistant',
-			category: 'Developer Tools',
-			description:
-				'An intelligent tool that automatically reviews pull requests, identifies potential bugs, suggests improvements, and ensures code quality standards are met.',
-			votes: 234,
-			comments: 45,
-			time: '2 hours ago'
-		},
-		{
-			id: '6',
-			title: 'Freelancer Financial Dashboard',
-			category: 'FinTech',
-			description:
-				'All-in-one financial management for freelancers with invoice tracking, expense categorization, tax estimation, and automated bookkeeping.',
-			votes: 98,
-			comments: 15,
-			time: '1 day ago'
-		}
-	]);
+	let ideas = $state(getUserIdeas());
+	let fullName = $state(profile.name);
+	let email = $state(profile.email);
+	let bio = $state(profile.bio);
+	let saved = $state(false);
 
 	function deleteIdea(id: string) {
 		if (confirm('Delete this idea? This cannot be undone.')) {
 			ideas = ideas.filter((i) => i.id !== id);
 		}
+	}
+
+	function saveProfile(event: SubmitEvent) {
+		event.preventDefault();
+		saved = true;
 	}
 
 	const totalVotes = $derived(ideas.reduce((sum, i) => sum + i.votes, 0));
@@ -50,8 +42,8 @@
 			<Avatar.Fallback class="bg-violet-100 text-xl font-bold text-violet-700">Y</Avatar.Fallback>
 		</Avatar.Root>
 		<div>
-			<h1 class="text-xl font-bold">You</h1>
-			<p class="text-muted-foreground text-sm">Member since March 2026</p>
+			<h1 class="text-xl font-bold">My Profile</h1>
+			<p class="text-muted-foreground text-sm">Manage your account settings and preferences</p>
 		</div>
 	</div>
 
@@ -76,6 +68,57 @@
 				<MessageSquareIcon class="size-5 text-violet-600" />
 				<span class="text-2xl font-bold">{totalComments}</span>
 				<span class="text-muted-foreground text-xs">Comments</span>
+			</Card.Content>
+		</Card.Root>
+	</div>
+
+	<div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Profile details</Card.Title>
+				<Card.Description>
+					Signed in as {profile.name} since {profile.joined}.
+				</Card.Description>
+			</Card.Header>
+			<Card.Content>
+				<form onsubmit={saveProfile} class="space-y-4">
+					<div class="space-y-2">
+						<Label for="profile-name">Full Name</Label>
+						<Input id="profile-name" bind:value={fullName} />
+					</div>
+					<div class="space-y-2">
+						<Label for="profile-email">Email</Label>
+						<Input id="profile-email" type="email" bind:value={email} />
+					</div>
+					<div class="space-y-2">
+						<Label for="profile-bio">Bio</Label>
+						<Textarea id="profile-bio" rows={3} bind:value={bio} />
+					</div>
+					<div class="flex items-center justify-between">
+						{#if saved}
+							<p class="text-sm text-green-700">Profile updated locally.</p>
+						{/if}
+						<Button type="submit" class="bg-violet-600 hover:bg-violet-700">Save Changes</Button>
+					</div>
+				</form>
+			</Card.Content>
+		</Card.Root>
+
+		<Card.Root>
+			<Card.Header>
+				<Card.Title>Account shortcuts</Card.Title>
+				<Card.Description>Quick actions from the updated frontend flow.</Card.Description>
+			</Card.Header>
+			<Card.Content class="space-y-3">
+				<Button href="/shadcn/settings" variant="outline" class="w-full justify-start">
+					Account Settings
+				</Button>
+				<Button href="/shadcn/signup" variant="outline" class="w-full justify-start">
+					Create another account
+				</Button>
+				<Button href="/shadcn/login" variant="outline" class="w-full justify-start">
+					Switch account
+				</Button>
 			</Card.Content>
 		</Card.Root>
 	</div>
@@ -118,7 +161,7 @@
 							</Card.Title>
 						</div>
 						<div class="flex shrink-0 gap-1">
-							<Button variant="ghost" size="icon-sm" title="Edit">
+							<Button variant="ghost" size="icon-sm" title="Edit" href="/shadcn/ideas/{idea.id}/edit">
 								<PencilIcon class="size-3.5" />
 							</Button>
 							<Button

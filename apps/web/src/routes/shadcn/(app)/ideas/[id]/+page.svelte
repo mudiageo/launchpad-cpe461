@@ -5,23 +5,23 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import { getIdeaById } from '$lib/mock/launchpad';
 	import ThumbsUpIcon from '@lucide/svelte/icons/thumbs-up';
 	import ArrowLeftIcon from '@lucide/svelte/icons/arrow-left';
 	import MessageSquareIcon from '@lucide/svelte/icons/message-square';
 	import SendIcon from '@lucide/svelte/icons/send';
 
-	// In a real app, the load function would fetch by page.params.id
+	const selectedIdea = getIdeaById(page.params.id) ?? getIdeaById('1');
+
 	const idea = {
-		id: page.params.id,
-		title: 'AI-Powered Code Review Assistant',
-		category: 'Developer Tools',
-		author: 'Sarah Chen',
-		time: '2 hours ago',
-		votes: 234,
-		summary:
-			'A smart assistant that scans your pull requests and provides actionable code quality feedback across repositories.',
-		description:
-			"It integrates with GitHub, GitLab, and Bitbucket to provide inline suggestions, prioritize issues by severity, and learn from your team's coding patterns to reduce noise over time.",
+		id: selectedIdea?.id ?? page.params.id,
+		title: selectedIdea?.title ?? 'Idea not found',
+		category: selectedIdea?.category ?? 'Uncategorized',
+		author: selectedIdea?.author ?? 'Unknown author',
+		time: selectedIdea?.time ?? 'Unknown time',
+		votes: selectedIdea?.votes ?? 0,
+		summary: selectedIdea?.description ?? 'No summary available.',
+		description: selectedIdea?.fullDescription ?? 'No detailed description available.',
 		features: [
 			'Automated bug detection with severity ratings',
 			'Code style and consistency checks',
