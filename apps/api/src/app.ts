@@ -8,11 +8,10 @@ import { errorHandler } from './middleware/error.middleware';
 import { categoriesRouter } from './routes/categories';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from './lib/auth';
-import { ideasRouter }      from './routes/ideas.router';
-import { commentsRouter }   from './routes/comments.router';
-import { votesRouter }      from './routes/votes.router';
-import { usersRouter }      from './routes/users.router';
-
+import { ideasRouter } from './routes/ideas.router';
+import { commentsRouter } from './routes/comments.router';
+import { votesRouter } from './routes/votes.router';
+import { usersRouter } from './routes/users.router';
 
 export function createApp() {
   const app = express();
